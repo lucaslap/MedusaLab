@@ -1,10 +1,5 @@
 # 🔐 Desafio de Segurança Cibernética - Medusa & Kali Linux
 
-![Security](https://img.shields.io/badge/Security-Penetration%20Testing-red)
-![Kali Linux](https://img.shields.io/badge/Platform-Kali%20Linux-blue)
-![Medusa](https://img.shields.io/badge/Tool-Medusa-orange)
-![License](https://img.shields.io/badge/License-Educational-green)
-
 > **⚠️ AVISO LEGAL**: Este projeto é exclusivamente para fins educacionais em ambientes controlados. Nunca execute ataques em sistemas sem autorização expressa. O uso inadequado dessas técnicas pode resultar em consequências legais graves.
 
 ## 📋 Sobre o Projeto
@@ -39,17 +34,9 @@ desafio-seguranca-medusa/
 │   └── senhas_ftp.txt
 │
 ├── scripts/                     # Scripts de automação
-│   ├── ataque_ftp.sh
-│   ├── ataque_smb.sh
-│   └── verificar_servicos.sh
-│
-├── docs/                        # Documentação detalhada
-│   ├── configuracao_ambiente.md
-│   ├── cenarios_ataque.md
-│   └── mitigacao.md
-│
-└── images/                      # Capturas de tela (evidências)
-    └── .gitkeep
+    ├── ataque_ftp.sh
+    ├── ataque_smb.sh
+    └── verificar_servicos.sh
 ```
 
 ## 🚀 Configuração do Ambiente
@@ -131,11 +118,6 @@ medusa -h <IP_METASPLOITABLE> -u admin -P wordlists/senhas_comuns.txt -M web-for
   -m DENY-SIGNAL:"Login failed"
 ```
 
-**Alternativa com HTTP Basic Auth**:
-```bash
-medusa -h <IP_METASPLOITABLE> -u admin -P wordlists/senhas_comuns.txt -M http -m DIR:/admin
-```
-
 ### 3️⃣ Password Spraying em SMB
 
 **Objetivo**: Testar uma senha comum contra múltiplos usuários.
@@ -168,98 +150,6 @@ medusa -h <IP_METASPLOITABLE> -u administrator -P wordlists/senhas_comuns.txt -M
 - **SMB**: ~10-15 minutos (wordlist de 500 senhas)
 - **Web**: ~3-8 minutos (dependendo da configuração)
 
-## 🛡️ Medidas de Mitigação
-
-### 1. Políticas de Senha Forte
-
-```bash
-# Requisitos mínimos:
-- Comprimento mínimo: 12 caracteres
-- Complexidade: maiúsculas, minúsculas, números, símbolos
-- Sem palavras de dicionário
-- Rotação periódica (90 dias)
-```
-
-### 2. Bloqueio de Conta
-
-```bash
-# Configurar no PAM (Linux)
-# Arquivo: /etc/pam.d/common-auth
-auth required pam_tally2.so deny=3 unlock_time=1800 onerr=fail
-```
-
-### 3. Autenticação Multifator (MFA)
-
-- Implementar 2FA em todos os serviços críticos
-- Usar Google Authenticator, Duo Security ou similar
-
-### 4. Limitação de Taxa (Rate Limiting)
-
-```bash
-# Firewall com iptables
-iptables -A INPUT -p tcp --dport 21 -m state --state NEW -m recent --set
-iptables -A INPUT -p tcp --dport 21 -m state --state NEW -m recent --update --seconds 60 --hitcount 4 -j DROP
-```
-
-### 5. Monitoramento e Logs
-
-```bash
-# Monitorar tentativas de login
-tail -f /var/log/auth.log | grep "Failed password"
-
-# Configurar alertas com Fail2Ban
-sudo apt install fail2ban
-```
-
-### 6. Desabilitar Serviços Desnecessários
-
-```bash
-# Listar serviços ativos
-systemctl list-units --type=service --state=running
-
-# Desabilitar FTP se não necessário
-sudo systemctl stop vsftpd
-sudo systemctl disable vsftpd
-```
-
-## 📚 Comandos Úteis do Medusa
-
-```bash
-# Ver módulos disponíveis
-medusa -d
-
-# Mostrar opções de um módulo específico
-medusa -M ssh -q
-
-# Ataque básico
-medusa -h <HOST> -u <USER> -p <PASSWORD> -M <MODULE>
-
-# Com wordlist de senhas
-medusa -h <HOST> -u <USER> -P <WORDLIST> -M <MODULE>
-
-# Com wordlist de usuários e senhas
-medusa -h <HOST> -U <USERS_FILE> -P <PASSWORDS_FILE> -M <MODULE>
-
-# Controlar threads (velocidade)
-medusa -h <HOST> -u <USER> -P <WORDLIST> -M <MODULE> -t 10
-
-# Salvar resultados
-medusa -h <HOST> -u <USER> -P <WORDLIST> -M <MODULE> -O resultados.txt
-
-# Modo verbose
-medusa -h <HOST> -u <USER> -P <WORDLIST> -M <MODULE> -v 6
-```
-
-## 🔍 Boas Práticas de Teste
-
-1. **Sempre obter autorização por escrito** antes de testar
-2. **Usar ambientes isolados** (VMs em rede interna)
-3. **Documentar todas as atividades** com timestamps
-4. **Limitar a taxa de ataque** para não causar DoS
-5. **Verificar legalidade** das ferramentas no seu país
-6. **Não armazenar credenciais reais** em wordlists públicas
-7. **Reportar vulnerabilidades** de forma responsável
-
 ## 📖 Recursos Adicionais
 
 ### Documentação
@@ -271,12 +161,6 @@ medusa -h <HOST> -u <USER> -P <WORDLIST> -M <MODULE> -v 6
 - [SecLists](https://github.com/danielmiessler/SecLists)
 - [RockYou](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt)
 - [CeWL](https://github.com/digininja/CeWL) - Criar wordlists customizadas
-
-### Ferramentas Alternativas
-- **Hydra** - Similar ao Medusa, muito popular
-- **Ncrack** - Ferramenta do projeto Nmap
-- **Patator** - Modular e flexível
-- **Burp Suite** - Para aplicações web
 
 ## 🤝 Contribuições
 
@@ -301,9 +185,3 @@ Desafio desenvolvido como parte do bootcamp DIO - Digital Innovation One
 - DIO - Digital Innovation One pelo desafio proposto
 - Comunidade de segurança cibernética
 - Desenvolvedores das ferramentas open source utilizadas
-
----
-
-**⚠️ Lembre-se**: Com grandes poderes vêm grandes responsabilidades. Use esse conhecimento de forma ética e legal!
-
-**🌟 Se este projeto foi útil, considere dar uma estrela no repositório!**
