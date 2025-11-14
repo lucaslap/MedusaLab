@@ -1,0 +1,16 @@
+root
+admin
+administrator
+msfadmin
+user
+guest
+test
+service
+postgres
+mysql
+ftp
+backup
+operator
+support
+webmaster
+mail
