@@ -1,0 +1,92 @@
+# Images Directory
+
+Esta pasta é destinada para armazenar capturas de tela e evidências dos testes realizados.
+
+## Estrutura Sugerida
+
+```
+images/
+├── configuracao/
+│   ├── virtualbox_network.png
+│   ├── kali_setup.png
+│   └── metasploitable_ip.png
+│
+├── reconhecimento/
+│   ├── nmap_scan.png
+│   ├── service_detection.png
+│   └── enum4linux_output.png
+│
+├── ataques/
+│   ├── medusa_ftp.png
+│   ├── medusa_ssh.png
+│   ├── medusa_smb.png
+│   └── dvwa_attack.png
+│
+├── resultados/
+│   ├── credentials_found.png
+│   ├── access_validated.png
+│   └── logs_analysis.png
+│
+└── mitigacao/
+    ├── fail2ban_config.png
+    ├── firewall_rules.png
+    └── 2fa_setup.png
+```
+
+## Como Adicionar Imagens
+
+### 1. Captura de Tela no Linux
+
+```bash
+# Capturar tela inteira
+gnome-screenshot
+
+# Capturar área selecionada
+gnome-screenshot -a
+
+# Ou usar ferramenta Flameshot
+sudo apt install flameshot
+flameshot gui
+```
+
+### 2. Captura de Tela no Windows
+
+- Usar `Win + Shift + S` para Snipping Tool
+- Ou usar `PrtScn` para captura completa
+
+### 3. Adicionar ao Projeto
+
+```bash
+# Copiar imagem para a pasta
+cp ~/Downloads/screenshot.png images/ataques/medusa_ftp.png
+```
+
+### 4. Referenciar no Markdown
+
+```markdown
+![Descrição da imagem](../images/ataques/medusa_ftp.png)
+```
+
+## Boas Práticas
+
+- ✅ Use nomes descritivos para os arquivos
+- ✅ Organize por categoria
+- ✅ Mantenha tamanho razoável (< 2MB por imagem)
+- ✅ Use formato PNG para screenshots
+- ✅ Oculte informações sensíveis (IPs reais, senhas, etc.)
+- ✅ Adicione legendas descritivas no markdown
+
+## Exemplo de Uso no README
+
+```markdown
+### Resultado do Ataque FTP
+
+![Medusa FTP Attack](images/ataques/medusa_ftp.png)
+*Figura 1: Ataque de força bruta bem-sucedido no serviço FTP*
+
+Como podemos ver na imagem acima, o Medusa conseguiu encontrar as credenciais...
+```
+
+---
+
+**Nota**: Esta pasta é rastreada pelo Git, mas está vazia por padrão. Adicione suas próprias capturas de tela durante a execução dos testes.

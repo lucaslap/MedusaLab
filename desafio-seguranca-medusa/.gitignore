@@ -1,0 +1,66 @@
+# .gitignore
+
+# Arquivos de resultados dos ataques
+*.txt
+resultados_*.txt
+scan_report_*.txt
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.swp
+*~
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Credenciais e dados sensíveis
+credentials.txt
+passwords.txt
+secrets/
+
+# Arquivos grandes de wordlists externas
+wordlists/rockyou.txt
+wordlists/SecLists/
+
+# Capturas de pacotes
+*.pcap
+*.pcapng
+
+# Certificados e chaves privadas
+*.pem
+*.key
+*.crt
+*.pfx
+
+# Arquivos de configuração local
+local_config.sh
+.env
+
+# Diretórios de cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Arquivos de backup
+*.bak
+*.backup
+
+# Resultados de ferramentas
+nmap_results/
+enum4linux_output/
+
+# Manter apenas estrutura vazia da pasta images
+# mas ignorar as imagens em si (adicionar manualmente se quiser commitar)
+# images/*.png
+# images/*.jpg
+# images/*.jpeg
