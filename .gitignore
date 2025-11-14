@@ -1,4 +1,4 @@
-# .gitignore
+mv .# .gitignore
 
 # Arquivos de resultados dos ataques
 *.txt
