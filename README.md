@@ -171,17 +171,6 @@ Contribuições são bem-vindas! Sinta-se à vontade para:
 - Melhorar a documentação
 - Compartilhar novos cenários de teste
 
-## 📝 Licença
+##
 
-Este projeto é disponibilizado apenas para fins educacionais. Use com responsabilidade e ética.
-
-## 👨‍💻 Autor
-
-**Lucas**  
-Desafio desenvolvido como parte do bootcamp DIO - Digital Innovation One
-
-## 🙏 Agradecimentos
-
-- DIO - Digital Innovation One pelo desafio proposto
-- Comunidade de segurança cibernética
-- Desenvolvedores das ferramentas open source utilizadas
+- Desafio desenvolvido como parte do bootcamp DIO - Digital Innovation One
